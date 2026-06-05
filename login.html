@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="p3.css">
+</head>
+
+<body class="login-body">
+     
+<div class="login-box">
+   
+  <h2>Welcome To Shopease</h2>
+  <p>login to your account to continue shopping</p><br>
+ 
+  <input id="email" type="email" placeholder="Enter your email">
+  <input id="password" type="password" placeholder="Enter your password">
+
+  <button onclick="login()" href="index.html">Log in</button>
+ 
+  <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+</div>
+
+<script>
+
+console.log("Login page loaded");
+
+async function login(){
+
+ let email = document.getElementById("email").value;
+ let pass  = document.getElementById("password").value;
+
+ if(!email || !pass){
+   alert("Please fill all fields");
+   return;
+ }
+
+ try{
+
+   let res = await fetch("http://localhost:3000/login",{
+     method:"POST",
+     headers:{"Content-Type":"application/json"},
+     body: JSON.stringify({
+       email: email,
+       password: pass
+     })
+   });
+
+   let data = await res.json();
+
+   if(data.error){
+     alert(data.error);
+     return;
+   }
+
+   alert(data.msg);
+
+   // VERY IMPORTANT
+   localStorage.setItem("email", email);
+
+   // SAFE REDIRECT
+   setTimeout(()=>{
+     window.location.href = "index.html";
+   }, 1000);
+
+ }catch(e){
+
+   alert("Server not running or network issue");
+
+ }
+
+}
+
+</script>
+</body>
+</html>

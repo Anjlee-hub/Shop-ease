@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Electronics</title>
+<link rel="stylesheet" href="cssstyle.css">
+
+<style>
+body{
+  background: linear-gradient(to right,#f0f8ff,#f5f0ff);
+}
+
+/* ===== GRID ===== */
+.products{
+  display:grid;
+  grid-template-columns: repeat(5,1fr);
+  gap:15px;
+  padding:20px;
+  max-width:1300px;
+  margin:auto;
+}
+
+/* ===== CARD ===== */
+.product-card{
+  background:white;
+  border-radius:12px;
+  padding:10px;
+  text-align:center;
+  box-shadow:0 0 10px #0001;
+  transition:0.3s;
+}
+
+.product-card:hover{
+  transform:translateY(-5px);
+}
+
+.product-card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.product-card span{
+  color:#3f51b5;
+  font-weight:bold;
+}
+
+/* ===== GLASS BUTTONS ===== */
+button{
+  margin:3px;
+  padding:6px 12px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  border:1px solid rgba(255,255,255,0.4);
+  border-radius:20px;
+  color:#333;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#3f51b5;
+  color:white;
+  transform:scale(1.05);
+}
+
+/* ===== AVATAR ===== */
+.ai-avatar{
+  display:flex;
+  gap:10px;
+  padding:10px;
+  margin:20px;
+  background:#ffffffcc;
+  border-radius:10px;
+}
+
+.avatar-img{
+  width:100px;
+  border-radius:50%;
+}
+
+.avatar-messages{
+  height:120px;
+  overflow:auto;
+  background:white;
+  padding:5px;
+  border-radius:6px;
+}
+
+@media(max-width:1100px){
+  .products{ grid-template-columns:repeat(3,1fr);}
+}
+
+@media(max-width:700px){
+  .products{ grid-template-columns:repeat(2,1fr);}
+}
+</style>
+
+<script src="js/store.js" defer></script>
+</head>
+
+<body>
+
+<header class="navbar">
+<div class="logo">Shopease</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="women.html">Women's Wear</a>
+<a href="men.html">Men's Wear</a>
+<a href="accessories.html">Accessories</a>
+<a href="electronics.html">Electronics</a>
+</nav>
+</header>
+
+<h2 align="center">Electronics Collection</h2>
+
+<section class="products">
+
+<!-- ===== 25 ELECTRONICS ===== -->
+
+<div class="product-card">
+<img src="images/e1.jpg">
+<p>Smart Phone</p>
+<span>$699</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e2.jpg">
+<p>Laptop</p>
+<span>$999</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e3.jpg">
+<p>Smart TV</p>
+<span>$799</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e4.jpg">
+<p>Bluetooth Headset</p>
+<span>$59</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e5.jpg">
+<p>Gaming Mouse</p>
+<span>$39</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e6.jpg">
+<p>Keyboard</p>
+<span>$49</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e7.jpg">
+<p>Smart Watch</p>
+<span>$129</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e8.jpg">
+<p>Tablet</p>
+<span>$299</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e9.jpg">
+<p>Camera</p>
+<span>$499</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e10.jpg">
+<p>Power Bank</p>
+<span>$29</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e11.jpg">
+<p>Speaker</p>
+<span>$89</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e12.jpg">
+<p>Router</p>
+<span>$59</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e13.jpg">
+<p>Hard Disk</p>
+<span>$99</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e14.jpg">
+<p>Printer</p>
+<span>$159</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e15.jpg">
+<p>Monitor</p>
+<span>$199</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e16.jpg">
+<p>USB Drive</p>
+<span>$15</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e17.jpg">
+<p>Charger</p>
+<span>$19</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e18.jpg">
+<p>Drone</p>
+<span>$399</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e19.jpg">
+<p>Smart Bulb</p>
+<span>$25</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e20.jpg">
+<p>VR Headset</p>
+<span>$249</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e21.jpg">
+<p>Projector</p>
+<span>$299</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e22.jpg">
+<p>Fitness Band</p>
+<span>$79</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e23.jpg">
+<p>Mic</p>
+<span>$45</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e24.jpg">
+<p>Game Console</p>
+<span>$499</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/e25.jpg">
+<p>Smart Doorbell</p>
+<span>$149</span><br>
+<button>Add Cart</button>
+<button>♡</button>
+</div>
+
+</section>
+
+<!-- ===== AVATAR (SAME) ===== -->
+<div class="ai-avatar">
+
+<img src="images/avatar.jpeg" class="avatar-img">
+
+<div class="avatar-chat">
+
+<div id="avatarMessages" class="avatar-messages">
+<p><b>Shopkeeper:</b> Ask about electronics 😊</p>
+</div>
+
+<input id="avatarInput" placeholder="Ask about phone, laptop, speaker">
+
+<button onclick="askAvatar()">Send</button>
+
+<button id="startMic">🎤 Speak</button>
+
+<p id="status"></p>
+
+</div>
+</div>
+
+<script>
+function askAvatar(){
+
+ let input=document.getElementById("avatarInput").value;
+ let box=document.getElementById("avatarMessages");
+
+ box.innerHTML+=`<p><b>You:</b> ${input}</p>`;
+
+ let reply=getReply(input.toLowerCase());
+
+ box.innerHTML+=`<p><b>Shopkeeper:</b> ${reply}</p>`;
+
+ speak(reply);
+}
+
+function getReply(t){
+
+if(t.includes("phone")||t.includes("laptop")){
+ return "We have best phones and laptops in electronics";
+}
+
+if(t.includes("men")){
+ window.location="men.html";
+ return "Opening men section";
+}
+
+if(t.includes("women")){
+ window.location="women.html";
+ return "Opening women section";
+}
+
+if(t.includes("accessories")){
+ window.location="accessories.html";
+ return "Opening accessories";
+}
+
+return "Ask about phone, laptop, speaker, accessories";
+}
+
+function speak(text){
+ let s=new SpeechSynthesisUtterance(text);
+ speechSynthesis.speak(s);
+}
+
+let rec=new (window.SpeechRecognition||
+window.webkitSpeechRecognition)();
+
+rec.onresult=function(e){
+ let text=e.results[0][0].transcript;
+ document.getElementById("avatarInput").value=text;
+ askAvatar();
+};
+
+document.getElementById("startMic")
+.onclick=()=>rec.start();
+</script>
+
+</body>
+</html>

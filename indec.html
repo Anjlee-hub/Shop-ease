@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopease</title>
+  <link rel="stylesheet" href="cssstyle.css">
+  <script src="store.js" defer></script>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">Shopease</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="women.html">Women's Wear</a>
+    <a href="men.html">Men's Wear</a>
+    <a href="accessories.html">Accessories</a>
+    <a href="services.html">Services</a>
+
+    <!-- ✅ ADDED COUNT BADGES ONLY -->
+    <span class="icon" onclick="openWishlist()">
+      ♡ <b id="wishCount">0</b>
+    </span>
+
+    <span class="icon" onclick="openCart()">
+      🛒 <b id="cartCount">0</b>
+    </span>
+  </nav>
+</header>
+
+<div class="slider">
+  <img id="slideImg" src="images/anmi1.jpg">
+</div>
+
+<section class="hero-modern">
+  <div class="hero-content">
+    <span class="secure-badge">🔒 Secure Shopping</span>
+    <h1 class="hero-title">New Arrivals</h1>
+    <p class="hero-subtitle">Summer Collection 2025</p>
+    <a href="women.html" class="hero-btn">Shop Now</a>
+  </div>
+
+  <div class="hero-image">
+    <img src="images/card1.png" alt="New Arrivals">
+  </div>
+</section>
+
+<section class="categories">
+  <div class="cat-card fade-in" onclick="location.href='women.html'">
+    <img src="images/w6.jpg">
+    <h3>Women's Wear</h3>
+  </div>
+
+  <div class="cat-card fade-in" onclick="location.href='men.html'">
+    <img src="images/men.jpg">
+    <h3>Men's Wear</h3>
+  </div>
+
+  <div class="cat-card fade-in" onclick="location.href='accessories.html'">
+    <img src="images/accesories.jpg">
+    <h3>Accessories</h3>
+  </div>
+</section>
+
+<section class="deal">
+  <h2>Exclusive Deal of the Day</h2>
+  <div class="timer">
+    <span id="days">00</span> Days
+    <span id="hours">00</span> Hours
+    <span id="mins">00</span> Min
+    <span id="secs">00</span> Sec
+  </div>
+  <a href="checkout.html" class="btn">Shop Deal</a>
+</section>
+
+
+<div class="ai-avatar">
+  <img src="images/avtar.jpeg" alt="AI Avatar" class="avatar-img">
+  
+  <button id="micBtn">🎤 Speak</button>
+  <p id="status"></p>
+
+  <div class="avatar-chat">
+    <div id="avatarMessages" class="avatar-messages">
+      <p><strong>Shopkeeper:</strong> Hi! How can I help you today? 😊</p>
+    </div>
+
+    <input id="avatarInput" type="text" placeholder="Ask me about products..." />
+    <button onclick="askAvatar()">Send</button>
+  </div>
+</div>
+
+<!-- ================= CART MODAL ================= -->
+
+<div id="cartModal" class="modal">
+  <div class="modal-box">
+
+    <h3>Your Cart</h3>
+
+    <div id="cartItems"></div>
+
+    <!-- ✅ ONLY THIS BUTTON ADDED AS YOU ASKED -->
+    <button onclick="goToPayment()">Checkout</button>
+
+    <button onclick="closeCart()">Close</button>
+
+  </div>
+</div>
+
+<!-- ============================================== -->
+
+<div id="wishModal" class="modal">
+  <div class="modal-box">
+    <h3>Wishlist</h3>
+    <div id="wishItems"></div>
+    <button onclick="closeWish()">Close</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <h3>Shopease</h3>
+      <p>Your trusted fashion shopping destination.</p>
+    </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="women.html">Women</a>
+      <a href="men.html">Men</a>
+      <a href="accessories.html">Accessories</a>
+    </div>
+
+    <div>
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Returns</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+
+    <div>
+      <h4>Contact</h4>
+      <p>support@shopease.com</p>
+      <p>+91 98765 43210</p>
+    </div>
+  </div>
+
+  <p class="footer-bottom">© 2025 Shopease. All rights reserved.</p>
+</footer>
+
+
+<!-- ✅ ONLY NEW SCRIPT ADDED – NOTHING CHANGED ABOVE -->
+<script>
+
+function goToPayment(){
+  window.location = "payment.html";
+}
+<!-- ===== AI BRAIN ADDED – DO NOT CHANGE ANY ABOVE CODE ===== -->
+
+
+
+// This connects your avatar to free AI API
+async function askAvatar(){
+
+ let input = document.getElementById("avatarInput").value;
+
+ let box = document.getElementById("avatarMessages");
+
+ box.innerHTML += `<p><b>You:</b> ${input}</p>`;
+
+ // ===== CALL FREE AI =====
+ let res = await fetch("https://api.monkedev.com/fun/chat",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({
+     msg: input
+   })
+ });
+
+ let data = await res.json();
+
+ let reply = data.response;
+
+ box.innerHTML += `<p><b>Shopkeeper:</b> ${reply}</p>`;
+
+ speak(reply);
+
+ document.getElementById("avatarInput").value="";
+}
+
+
+// ===== VOICE SPEAK =====
+function speak(text){
+ let s = new SpeechSynthesisUtterance(text);
+ s.rate = 0.95;
+ s.pitch = 1;
+ s.lang = "en-US";
+ speechSynthesis.speak(s);
+}
+
+
+
+
+
+function goToPayment(){
+  window.location = "payment.html";
+}
+
+/* ===== UNIVERSAL AI BRAIN ===== */
+
+const API_KEY = "PASTE_YOUR_GEMINI_KEY_HERE";
+
+async function askAvatar(){
+
+ let input = document.getElementById("avatarInput").value.trim();
+ let box = document.getElementById("avatarMessages");
+
+ if(!input){
+   alert("Please type something");
+   return;
+ }
+
+ box.innerHTML += `<p><b>You:</b> ${input}</p>`;
+
+ let reply = await askRealAI(input);
+
+ box.innerHTML += `<p><b>Shopkeeper:</b> ${reply}</p>`;
+
+ speak(reply);
+
+ document.getElementById("avatarInput").value="";
+}
+
+
+/* ===== CONNECT TO REAL AI ===== */
+
+async function askRealAI(text){
+
+ try{
+
+ let res = await fetch(
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + API_KEY,
+  {
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({
+     contents:[{
+       parts:[{text:text}]
+     }]
+   })
+ });
+
+ let data = await res.json();
+
+ return data.candidates[0].content.parts[0].text;
+
+ }
+ catch(e){
+   return "AI connection error – check internet or API key";
+ }
+
+}
+
+
+/* ===== VOICE SPEAK ===== */
+
+function speak(text){
+ let s = new SpeechSynthesisUtterance(text);
+ s.rate = 0.95;
+ s.pitch = 1;
+ s.lang = "en-US";
+ speechSynthesis.speak(s);
+}
+
+
+
+
+
+/* ===== PAYMENT NAV ===== */
+function goToPayment(){
+  window.location = "payment.html";
+}
+
+/* ===== VOICE SPEAK (FIXED) ===== */
+function speak(text){
+ let s = new SpeechSynthesisUtterance(text);
+ s.rate = 0.95;
+ s.pitch = 1;
+ s.lang = "en-US";
+ speechSynthesis.speak(s);
+}
+
+/* ===== MIC RECOGNITION (YOU DIDN'T HAVE THIS) ===== */
+
+let recognition;
+
+function startMic(){
+
+ const SpeechRecognition =
+ window.SpeechRecognition || window.webkitSpeechRecognition;
+
+ if(!SpeechRecognition){
+   alert("Mic works only in Chrome / Edge");
+   return;
+ }
+
+ recognition = new SpeechRecognition();
+ recognition.lang="en-US";
+
+ recognition.onstart = ()=>{
+   document.getElementById("status").innerText="🎤 Listening...";
+ };
+
+ recognition.onresult = (e)=>{
+   let text = e.results[0][0].transcript;
+
+   document.getElementById("avatarInput").value = text;
+
+   askAvatar();   // auto send
+ };
+
+ recognition.onerror = ()=>{
+   document.getElementById("status").innerText="Mic error";
+ };
+
+ recognition.start();
+}
+
+/* ===== CONNECT MIC BUTTON ===== */
+document.getElementById("micBtn").onclick = startMic;
+
+
+/* ===== SIMPLE AI (FREE) ===== */
+
+async function askAvatar(){
+
+ let input = document.getElementById("avatarInput").value;
+
+ let box = document.getElementById("avatarMessages");
+
+ if(!input) return;
+
+ box.innerHTML += `<p><b>You:</b> ${input}</p>`;
+
+ try{
+
+ let res = await fetch("https://api.monkedev.com/fun/chat",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({ msg: input })
+ });
+
+ let data = await res.json();
+
+ let reply = data.response;
+
+ box.innerHTML += `<p><b>Shopkeeper:</b> ${reply}</p>`;
+
+ speak(reply);
+
+ }
+ catch(e){
+   box.innerHTML += `<p><b>Shopkeeper:</b> I'm offline right now 😢</p>`;
+ }
+
+ document.getElementById("avatarInput").value="";
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

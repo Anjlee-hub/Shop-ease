@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>UPI Payment</title>
+<link rel="stylesheet" href="cssstyle.css">
+
+<style>
+body{
+  background: linear-gradient(to right,#f3e5f5,#e3f2fd);
+  font-family:Arial;
+}
+
+.box{
+  max-width:500px;
+  margin:30px auto;
+  background:white;
+  padding:20px;
+  text-align:center;
+  border-radius:12px;
+  box-shadow:0 0 10px #0002;
+}
+
+.btn{
+  background:#673ab7;
+  color:white;
+  padding:10px;
+  border:none;
+  width:100%;
+  margin-top:10px;
+}
+</style>
+
+<script src="store.js"></script>
+
+<!-- PDF LIBRARY (same as payment page) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Scan & Pay via UPI</h2>
+
+<!-- YOU CAN REPLACE THIS IMAGE WITH YOUR REAL QR -->
+<img src="images/upiqr.png" width="220">
+
+<p><b>UPI ID:</b> shopease@upi</p>
+
+<p>After payment click below button</p>
+
+<button class="btn" onclick="verifyUPI()">I Have Paid</button>
+
+</div>
+
+<script>
+
+/* ===== SAME PDF FUNCTION ===== */
+function generatePDF(){
+
+ const { jsPDF } = window.jspdf;
+
+ let doc=new jsPDF();
+
+ let cart=JSON.parse(localStorage.getItem("cart")||"[]");
+
+ doc.text("SHOPEASE ORDER SUMMARY",10,10);
+
+ let y=20,total=0;
+
+ cart.forEach(i=>{
+   doc.text(i.n+" - $"+i.p,10,y);
+   y+=10;
+   total+=i.p;
+ });
+
+ doc.text("TOTAL: $"+total,10,y+10);
+
+ doc.save("order.pdf");
+}
+
+/* ===== VERIFY UPI PAYMENT ===== */
+function verifyUPI(){
+
+ alert("Payment Verified Successfully!");
+
+ generatePDF();
+
+ localStorage.removeItem("cart");
+
+ window.location="index.html";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Payment</title>
+<link rel="stylesheet" href="cssstyle.css">
+
+<style>
+body{
+  background: linear-gradient(to right,#e3f2fd,#fce4ec);
+  font-family:Arial;
+}
+
+.pay-box{
+  max-width:600px;
+  margin:30px auto;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 0 10px #0002;
+}
+
+input,select{
+  width:100%;
+  padding:8px;
+  margin:8px 0;
+}
+
+.btn{
+  background:#4caf50;
+  color:white;
+  padding:10px;
+  border:none;
+  width:100%;
+}
+
+.cart-item{
+  border-bottom:1px solid #ddd;
+  padding:5px;
+}
+</style>
+
+<script src="store.js" defer></script>
+
+<!-- ONLY ADDED LIBRARY FOR PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+
+<h2 align="center">Checkout & Payment</h2>
+
+<div class="pay-box">
+
+<h3>Your Cart</h3>
+
+<div id="payCart"></div>
+
+<h3>Total: $<span id="totalAmt">0</span></h3>
+
+<hr>
+
+<h3>Delivery Details</h3>
+
+<input placeholder="Full Name">
+<input placeholder="Mobile">
+<input placeholder="Address">
+<input placeholder="City">
+
+<select id="payMode" onchange="mode()">
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Card</option>
+</select>
+
+<div id="cardBox" style="display:none">
+
+<input id="card" placeholder="Card Number">
+<input id="cvv" placeholder="CVV">
+<input id="exp" placeholder="MM/YY">
+
+</div>
+
+<button class="btn" onclick="placeOrder()">Place Order</button>
+
+</div>
+
+<script>
+
+function loadPayCart(){
+
+ let c = JSON.parse(localStorage.getItem("cart")||"[]");
+
+ let box = document.getElementById("payCart");
+
+ let total = 0;
+
+ box.innerHTML="";
+
+ c.forEach(i=>{
+   box.innerHTML += `
+   <div class='cart-item'>
+     ${i.n} - $${i.p}
+   </div>`;
+   total += i.p;
+ });
+
+ document.getElementById("totalAmt").innerText = total;
+}
+
+function mode(){
+ let m=document.getElementById("payMode").value;
+ document.getElementById("cardBox").style.display=
+ m=="Card"?"block":"none";
+}
+
+function validateCard(){
+
+ let c=document.getElementById("card").value;
+ let cv=document.getElementById("cvv").value;
+ let ex=document.getElementById("exp").value;
+
+ if(c.length!=16){
+   alert("Card must be 16 digits");
+   return false;
+ }
+
+ if(cv.length!=3){
+   alert("CVV must be 3 digits");
+   return false;
+ }
+
+ if(!ex.includes("/")){
+   alert("Expiry format MM/YY");
+   return false;
+ }
+
+ return true;
+}
+
+function generatePDF(){
+
+ const { jsPDF } = window.jspdf;
+
+ let doc=new jsPDF();
+
+ let cart=JSON.parse(localStorage.getItem("cart")||"[]");
+
+ doc.text("SHOPEASE ORDER SUMMARY",10,10);
+
+ let y=20,total=0;
+
+ cart.forEach(i=>{
+   doc.text(i.n+" - $"+i.p,10,y);
+   y+=10;
+   total+=i.p;
+ });
+
+ doc.text("TOTAL: $"+total,10,y+10);
+
+ doc.save("order.pdf");
+}
+
+
+/* ============ ONLY ADDED BACKEND PART HERE ============ */
+
+async function sendOrderToServer(){
+
+ let cart = JSON.parse(localStorage.getItem("cart")||"[]");
+
+ let total = cart.reduce((s,i)=>s+i.p,0);
+
+ let res = await fetch("http://localhost:3000/order",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body: JSON.stringify({
+     items: cart,
+     total: total
+   })
+ });
+
+ let data = await res.json();
+
+ console.log("SERVER:", data);
+
+}
+
+/* ====================================================== */
+
+
+function placeOrder(){
+
+ let m=document.getElementById("payMode").value;
+
+ if(m=="Card" && !validateCard()) return;
+
+ if(m=="UPI"){
+   window.location="upi.html";
+   return;
+ }
+
+ alert("Order Placed Successfully!");
+
+ /* ===== ONLY LINE ADDED ===== */
+ sendOrderToServer();
+ /* =========================== */
+
+ generatePDF();
+
+ localStorage.removeItem("cart");
+
+ window.location="indec.html";
+}
+
+loadPayCart();
+
+</script>
+
+</body>
+</html>

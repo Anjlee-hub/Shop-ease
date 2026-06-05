@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Admin Dashboard</h2>
+<ul>
+  <li>Total Orders: 120</li>
+  <li>Total Users: 45</li>
+  <li>Revenue: $5200</li>
+</ul>
+<h2>ADMIN PANEL</h2>
+
+<pre id="data"></pre>
+
+<script>
+
+fetch("http://localhost:3000/admin/all")
+.then(r=>r.json())
+.then(d=>{
+ document.getElementById("data")
+ .innerText = JSON.stringify(d,null,2);
+});
+
+</script>
+
+</body>
+</html>

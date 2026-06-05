@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Men's Wear</title>
+<link rel="stylesheet" href="cssstyle.css">
+
+<style>
+body{
+  background: linear-gradient(to right,#f0f8ff,#f0fff7);
+}
+
+/* ===== GRID ===== */
+.products{
+  display:grid;
+  grid-template-columns: repeat(5,1fr);
+  gap:15px;
+  padding:20px;
+  max-width:1300px;
+  margin:auto;
+}
+
+/* ===== CARD ===== */
+.product-card{
+  background:white;
+  border-radius:12px;
+  padding:10px;
+  text-align:center;
+  box-shadow:0 0 10px #0001;
+  transition:0.3s;
+}
+
+.product-card:hover{
+  transform:translateY(-5px);
+}
+
+.product-card img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.product-card span{
+  color:#2196f3;
+  font-weight:bold;
+}
+
+/* ===== GLASS BUTTONS ===== */
+button{
+  margin:3px;
+  padding:6px 12px;
+
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+
+  border:1px solid rgba(255,255,255,0.4);
+  border-radius:20px;
+
+  color:#333;
+  font-weight:bold;
+
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#2196f3;
+  color:white;
+  transform:scale(1.05);
+}
+
+/* ===== AVATAR ===== */
+.ai-avatar{
+  display:flex;
+  gap:10px;
+  padding:10px;
+  margin:20px;
+  background:#ffffffcc;
+  border-radius:10px;
+}
+
+.avatar-img{
+  width:100px;
+  border-radius:50%;
+}
+
+.avatar-messages{
+  height:120px;
+  overflow:auto;
+  background:white;
+  padding:5px;
+  border-radius:6px;
+}
+
+@media(max-width:1100px){
+  .products{ grid-template-columns:repeat(3,1fr);}
+}
+
+@media(max-width:700px){
+  .products{ grid-template-columns:repeat(2,1fr);}
+}
+</style>
+
+<script src="store.js" defer></script>
+</head>
+
+<body>
+
+<header class="navbar">
+<div class="logo">Shopease</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="women.html">Women's Wear</a>
+<a href="men.html">Men's Wear</a>
+<a href="accessories.html">Accessories</a>
+<a href="electronic.html">Electronics</a>
+
+<!-- ONLY ADDED -->
+<a href="payment.html">Checkout</a>
+<span>🛒 <b id="cartCount">0</b></span>
+<!-- END -->
+
+</nav>
+</header>
+
+<h2 align="center">Men Collection</h2>
+
+<!-- ONLY ADDED SEARCH -->
+<div align="center">
+<input id="searchBox" placeholder="Search men product..." onkeyup="filterProducts()">
+</div>
+<!-- END -->
+
+<section class="products">
+
+<!-- ===== 25 MEN PRODUCTS ===== -->
+
+<div class="product-card">
+<img src="images/m1.jpg">
+<p>Formal Shirt</p>
+<span>$149</span><br>
+<button onclick="addToCart('Formal Shirt',149)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m2.jpg">
+<p>Casual T-Shirt</p>
+<span>$99</span><br>
+<button onclick="addToCart('Casual T-Shirt',99)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m3.jpg">
+<p>Denim Jeans</p>
+<span>$189</span><br>
+<button onclick="addToCart('Denim Jeans',189)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m4.jpg">
+<p>Hoodie</p>
+<span>$159</span><br>
+<button onclick="addToCart('Hoodie',159)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m5.jpg">
+<p>Jacket</p>
+<span>$210</span><br>
+<button onclick="addToCart('Jacket',210)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m6.jpg">
+<p>Blazer</p>
+<span>$299</span><br>
+<button onclick="addToCart('Blazer',299)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m7.jpg">
+<p>Track Pants</p>
+<span>$129</span><br>
+<button onclick="addToCart('Track Pants',129)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m8.jpg">
+<p>Shorts</p>
+<span>$79</span><br>
+<button onclick="addToCart('Shorts',79)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m9.jpg">
+<p>Kurta</p>
+<span>$169</span><br>
+<button onclick="addToCart('Kurta',169)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m10.jpg">
+<p>Sweater</p>
+<span>$139</span><br>
+<button onclick="addToCart('Sweater',139)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m11.jpg">
+<p>Office Pants</p>
+<span>$159</span><br>
+<button onclick="addToCart('Office Pants',159)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m12.jpg">
+<p>Polo T-Shirt</p>
+<span>$109</span><br>
+<button onclick="addToCart('Polo T-Shirt',109)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m13.jpg">
+<p>Leather Jacket</p>
+<span>$349</span><br>
+<button onclick="addToCart('Leather Jacket',349)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m14.jpg">
+<p>Sports Wear</p>
+<span>$129</span><br>
+<button onclick="addToCart('Sports Wear',129)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m15.jpg">
+<p>Wedding Sherwani</p>
+<span>$499</span><br>
+<button onclick="addToCart('Wedding Sherwani',499)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m16.jpg">
+<p>Casual Shirt</p>
+<span>$119</span><br>
+<button onclick="addToCart('Casual Shirt',119)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m17.jpg">
+<p>Gym Vest</p>
+<span>$69</span><br>
+<button onclick="addToCart('Gym Vest',69)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m18.jpg">
+<p>Winter Coat</p>
+<span>$259</span><br>
+<button onclick="addToCart('Winter Coat',259)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m19.jpg">
+<p>Cargo Pants</p>
+<span>$179</span><br>
+<button onclick="addToCart('Cargo Pants',179)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m20.jpg">
+<p>Ethnic Kurta</p>
+<span>$199</span><br>
+<button onclick="addToCart('Ethnic Kurta',199)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m21.jpg">
+<p>Printed Shirt</p>
+<span>$139</span><br>
+<button onclick="addToCart('Printed Shirt',139)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m22.jpg">
+<p>Jeans Blue</p>
+<span>$189</span><br>
+<button onclick="addToCart('Jeans Blue',189)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m23.jpg">
+<p>Party Blazer</p>
+<span>$329</span><br>
+<button onclick="addToCart('Party Blazer',329)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m24.jpg">
+<p>Formal Combo</p>
+<span>$279</span><br>
+<button onclick="addToCart('Formal Combo',279)">Add Cart</button>
+<button>♡</button>
+</div>
+
+<div class="product-card">
+<img src="images/m25.jpg">
+<p>Street Style</p>
+<span>$159</span><br>
+<button onclick="addToCart('Street Style',159)">Add Cart</button>
+<button>♡</button>
+</div>
+
+</section>
+
+<!-- ===== AVATAR (UNCHANGED) ===== -->
+<div class="ai-avatar">
+
+<img src="images/avtar.jpeg" class="avatar-img">
+
+<div class="avatar-chat">
+
+<div id="avatarMessages" class="avatar-messages">
+<p><b>Shopkeeper:</b> Ask about men products 😊</p>
+</div>
+
+<input id="avatarInput" placeholder="Ask about men wear">
+
+<button onclick="askAvatar()">Send</button>
+
+<button id="startMic">🎤 Speak</button>
+
+<p id="status"></p>
+
+</div>
+</div>
+
+<script>
+
+/* YOUR ORIGINAL SCRIPT BELOW – UNTOUCHED */
+
+function askAvatar(){
+
+ let input=document.getElementById("avatarInput").value;
+ let box=document.getElementById("avatarMessages");
+
+ box.innerHTML+=`<p><b>You:</b> ${input}</p>`;
+
+ let reply=getReply(input.toLowerCase());
+
+ box.innerHTML+=`<p><b>Shopkeeper:</b> ${reply}</p>`;
+
+ speak(reply);
+}
+
+function getReply(t){
+
+if(t.includes("shirt")||t.includes("jeans")){
+ return "We have best shirts and jeans in men section";
+}
+
+if(t.includes("women")){
+ window.location="women.html";
+ return "Opening women section";
+}
+
+if(t.includes("electronics")){
+ window.location="electronics.html";
+ return "Opening electronics";
+}
+
+return "Ask about shirt, jeans, blazer, electronics";
+}
+
+function speak(text){
+ let s=new SpeechSynthesisUtterance(text);
+ speechSynthesis.speak(s);
+}
+
+let rec=new (window.SpeechRecognition||
+window.webkitSpeechRecognition)();
+
+rec.onresult=function(e){
+ let text=e.results[0][0].transcript;
+ document.getElementById("avatarInput").value=text;
+ askAvatar();
+};
+
+document.getElementById("startMic")
+.onclick=()=>rec.start();
+
+/* ONLY ADDED SEARCH */
+function filterProducts(){
+ let v=document.getElementById("searchBox").value.toLowerCase();
+
+ document.querySelectorAll(".product-card")
+ .forEach(c=>{
+   c.style.display=
+   c.innerText.toLowerCase().includes(v)
+   ?"block":"none";
+ });
+}
+
+</script>
+
+</body>
+</html>

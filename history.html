@@ -1,0 +1,23 @@
+<h2>Your Orders</h2>
+
+<div id="his"></div>
+
+<script>
+let email = localStorage.getItem("email");
+
+fetch("http://localhost:3000/history/"+email)
+.then(r=>r.json())
+.then(d=>{
+
+ document.getElementById("his").innerHTML =
+ d.map(o=>`
+
+ <div style="border:1px solid #ccc;margin:10px;padding:10px">
+  <b>Date:</b> ${o.time}<br>
+  <b>Total:</b> $${o.total}
+ </div>
+
+ `).join("");
+
+});
+</script>
